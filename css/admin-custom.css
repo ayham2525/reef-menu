@@ -1,0 +1,138 @@
+/* Reef Admin custom styles */
+.table td.text-center a{margin-right:.75rem}
+.table td.text-center a:last-child{margin-right:0}
+a , a:hover{
+    color: gray;
+}
+.text-primary , .text-primary:hover{
+  color: gray !important;
+}
+
+/* Custom sidebar styling */
+.main-sidebar.sidebar-dark-primary {
+    background-color: #68C0CA !important;
+    color: #ffffff !important;
+}
+
+/* Sidebar brand text */
+.main-sidebar .brand-text,
+.main-sidebar .brand-link {
+    color: #ffffff !important;
+}
+
+/* Sidebar nav links */
+.main-sidebar .nav-link {
+    color: #ffffff !important;
+}
+
+/* Active & hover links */
+.main-sidebar .nav-link.active,
+.main-sidebar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.15) !important; /* subtle white overlay */
+    color: #ffffff !important;
+}
+
+/* Sidebar nav icons */
+.main-sidebar .nav-link i {
+    color: #ffffff !important;
+}
+
+/* Base custom button */
+.custom-btn {
+    background-color: #68C0CA !important;
+    color: #fff !important;
+    border: none !important;
+    text-decoration: none !important; /* remove underline if it's a link */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease-in-out;
+}
+
+/* Hover & focus states */
+.custom-btn:hover,
+.custom-btn:focus {
+    background-color: #4FAAB5 !important; /* a bit darker shade */
+    color: #fff !important;
+    text-decoration: none !important;
+}
+
+/* Active/pressed */
+.custom-btn:active {
+    background-color: #3B8C96 !important; /* even darker for click */
+    color: #fff !important;
+}
+
+/* Ensure icons/links inside keep white */
+.custom-btn i,
+.custom-btn a {
+    color: #fff !important;
+}
+
+/* If it's an <a> with custom-btn */
+a.custom-btn {
+    text-decoration: none !important;
+}
+
+
+.form-control-sidebar{
+    background-color:  #fff !important;
+    color:  #68C0CA !important;
+}
+
+.custom-nav-item{
+      background-color: transparent !important; /* even darker for click */
+    color: #fff !important;
+}
+
+/* Align Select2 arrow vertically & horizontally (Bootstrap 4 / AdminLTE) */
+.select2-container--bootstrap4 .select2-selection--single {
+  position: relative;                     /* ensure arrow can be centered */
+  height: calc(2.25rem + 2px);            /* match .form-control height */
+  padding-right: 2rem;                    /* leave room for the arrow */
+}
+
+.select2-container--bootstrap4
+.select2-selection--single .select2-selection__rendered {
+  line-height: 2.25rem;                   /* text vertically centered */
+}
+
+.select2-container--bootstrap4
+.select2-selection--single .select2-selection__arrow {
+  position: absolute;
+  right: .75rem;                          /* nudge horizontally */
+  top: 50%;                               /* center vertically */
+  transform: translateY(-50%);
+  height: auto;                           /* let it size naturally */
+  width: 1rem;
+  pointer-events: none;                   /* avoid click overlaps */
+}
+
+/* Optional: tighten the inner placeholder spacing */
+.select2-container--bootstrap4
+.select2-selection--single .select2-selection__placeholder {
+  color: #6c757d;                         /* same as .text-muted */
+}
+
+@media screen {
+
+}
+.orders_buttons{
+    display: flex;
+    justify-content: end;
+    align-items: end;
+
+}
+@media (max-width: 767.98px){
+  .create_new_order{
+    margin-top: 10px;
+    display: inline-block;
+  }
+  .orders_buttons{
+    display: flex;
+    flex-direction: column;
+
+
+}
+}
+

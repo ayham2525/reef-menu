@@ -17,6 +17,22 @@ $app = new Illuminate\Foundation\Application(
 
 /*
 |--------------------------------------------------------------------------
+| Set Public Path
+|--------------------------------------------------------------------------
+|
+| On Hostinger (shared hosting), you copied Laravel's /public contents into
+| public_html root. So the public path should be the project base path.
+| This ensures Vite assets and public paths resolve correctly:
+| - build/manifest.json
+| - assets/
+| - css/js files
+|
+*/
+
+$app->usePublicPath($app->basePath());
+
+/*
+|--------------------------------------------------------------------------
 | Bind Important Interfaces
 |--------------------------------------------------------------------------
 |
