@@ -112,28 +112,38 @@ class MenuItem extends Model
     /**
      * Get the primary image URL (via relation or fallback to image_path).
      */
+    // app/Models/MenuItem.php
+
+    /**
+     * Computed primary image URL
+     * DB column: image_path (menu_items/xxx.png)
+     * Physical file: public/storage/menu_items/xxx.png
+     */
     public function getPrimaryImageUrlAttribute(): ?string
     {
-        // Prefer relation (primary image, then first image)
-        $img = $this->primaryImage ?: $this->images()->first();
-        if ($img && $img->path) {
-            return Storage::disk($img->disk ?? 'public')->url($img->path);
+        // 1️⃣ Prefer relation if you use multiple images later
+        if ($this->relationLoaded('primaryImage') && $this->primaryImage) {
+            return url('public/storage/' . ltrim($this->primaryImage->path, '/'));
         }
 
-        // Fallback: direct image_path column
+        // 2️⃣ Fallback to single image column
         if ($this->image_path) {
-            return Storage::disk($this->image_disk ?? 'public')->url($this->image_path);
+            return url('public/storage/' . ltrim($this->image_path, '/'));
         }
 
         return null;
     }
+
+
+
+
 
     /**
      * Helper: check if item has any image.
      */
     public function hasImage(): bool
     {
-        return (bool) $this->getPrimaryImageUrlAttribute();
+        return !empty($this->primary_image_url);
     }
 
     /* ---------------- Hooks ---------------- */

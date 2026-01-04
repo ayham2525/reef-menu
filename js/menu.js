@@ -31,11 +31,12 @@ function itemTitle(item) { return item?.name ?? item?.title ?? ""; }
 function itemCategoryLabel(item) {
   return item?.category_label ?? item?.category_name ?? item?.categoryLabel ?? item?.categoryName ?? "";
 }
-function itemImage(item) {
-  const img = item?.img ?? item?.image ?? item?.photo;
-  return img || ASSETS.fallbackImage;
-}
 
+function itemImage(item) {
+
+    return item?.img || ASSETS.fallbackImage;
+
+}
 /* --------------------------
   DOM
 --------------------------- */
@@ -312,6 +313,7 @@ function getFilteredItems() {
 
 function renderProducts() {
   const items = getFilteredItems();
+
   if (!items.length) {
     productGridEl.innerHTML = `<div class="empty-cart"><p>No items found</p></div>`;
     return;
@@ -321,14 +323,19 @@ function renderProducts() {
     const id = it.id;
     const title = itemTitle(it);
     const label = itemCategoryLabel(it) || "";
-    const img = itemImage(it);
+    const img = itemImage(it); // ✅ FULL URL
     const qty = cart[id] || 0;
 
     return `
       <div class="product-card ${qty > 0 ? "in-cart" : ""}" data-id="${id}">
         <div class="product-image-container">
-          <img src="${img}" alt="${title}" class="product-image" loading="lazy"
-               onerror="this.onerror=null; this.src='${ASSETS.fallbackImage}';" />
+          <img
+            src="${img}"
+            alt="${title}"
+            class="product-image"
+            loading="lazy"
+            onerror="this.onerror=null;this.src='${ASSETS.fallbackImage}';"
+          />
           <div class="product-overlay">
             <div class="product-overlay-content">
               <div class="quantity-control">
@@ -361,6 +368,7 @@ function renderProducts() {
     `;
   }).join("");
 }
+
 
 /* --------------------------
   Cart

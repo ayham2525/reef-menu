@@ -1,31 +1,34 @@
 <?php
 
+use Illuminate\Foundation\Application;
+
 /*
 |--------------------------------------------------------------------------
 | Create The Application
 |--------------------------------------------------------------------------
 |
-| The first thing we will do is create a new Laravel application instance
-| which serves as the "glue" for all the components of Laravel, and is
-| the IoC container for the system binding all of the various parts.
+| Create a new Laravel application instance which serves as the glue
+| for all components and acts as the IoC container.
 |
 */
 
-$app = new Illuminate\Foundation\Application(
+$app = new Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
 
 /*
 |--------------------------------------------------------------------------
-| Set Public Path
+| Set Public Path (IMPORTANT)
 |--------------------------------------------------------------------------
 |
-| On Hostinger (shared hosting), you copied Laravel's /public contents into
-| public_html root. So the public path should be the project base path.
-| This ensures Vite assets and public paths resolve correctly:
-| - build/manifest.json
-| - assets/
-| - css/js files
+| This project is configured to use the PROJECT ROOT as the public path.
+| This is required because on shared hosting (Hostinger), the contents of
+| Laravel's /public directory are served directly from the web root.
+|
+| Result:
+| - public_path() === base_path()
+| - URLs must include /public/ for files inside the public folder
+| - build/, assets/, css/, js/ are resolved correctly
 |
 */
 
@@ -36,9 +39,7 @@ $app->usePublicPath($app->basePath());
 | Bind Important Interfaces
 |--------------------------------------------------------------------------
 |
-| Next, we need to bind some important interfaces into the container so
-| we will be able to resolve them when needed. The kernels serve the
-| incoming requests to this application from both the web and CLI.
+| Bind the HTTP kernel, Console kernel, and Exception handler.
 |
 */
 
@@ -62,9 +63,7 @@ $app->singleton(
 | Return The Application
 |--------------------------------------------------------------------------
 |
-| This script returns the application instance. The instance is given to
-| the calling script so we can separate the building of the instances
-| from the actual running of the application and sending responses.
+| Return the application instance.
 |
 */
 
